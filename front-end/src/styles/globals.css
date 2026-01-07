@@ -1,1 +1,96 @@
 @import "tailwindcss";
+
+:root {
+    --background-color: #151515;
+    --background-contrast-color: #2f3133;
+    --border-color: #555759;
+    --text-color: whitesmoke;
+    --primary-color: #17b6ff;
+    --primary-color-hover: #17b6ffd3;
+}
+
+aside {
+    background-color: var(--background-contrast-color);
+    width: 15%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.border-on-top {
+    border-top: solid 1px var(--border-color);
+}
+
+.all-borders {
+    border: solid 1px var(--border-color);
+}
+
+header {
+    background-color: var(--background-contrast-color);
+    padding: 1rem 2rem;
+}
+
+.default-theme {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+input {
+    background-color: var(--background-contrast-color);
+    color: var(--text-color);
+    border: solid 1px var(--border-color);
+    display: block;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-color-hover);
+    color: white;
+}
+
+.logo {
+    background-color: var(--primary-color);  
+}
+
+.metrics-card {
+    background-color: var(--background-contrast-color);
+    border: solid 1px var(--border-color);
+    text-align: center;
+}
+
+.deletar {
+    background-color: var(--background-color);
+    color: red;
+}
+
+.deletar:hover {
+    background-color: rgb(243, 30, 30);
+}
+
+.copiar {
+    background-color: var(--background-color);
+    color: #737373;
+}
+
+.copiar:hover {
+    color: var(--text-color);
+    background-color: var(--background-contrast-color);
+}
