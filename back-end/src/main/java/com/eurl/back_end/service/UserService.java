@@ -2,10 +2,10 @@ package com.eurl.back_end.service;
 
 import java.util.UUID;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.eurl.back_end.dto.UserRecordDto;
+import com.eurl.back_end.dto.request.RegisterUserRequestDto;
 import com.eurl.back_end.model.UserModel;
 import com.eurl.back_end.repository.UserRepository;
 
@@ -15,19 +15,20 @@ import jakarta.transaction.Transactional;
 public class UserService {
     
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
-    public UserModel createUser(UserRecordDto userRecordDto) {
+    public UserModel createUser(RegisterUserRequestDto registerDto) {
         UserModel user = new UserModel();
         user.setActive(true);
-        user.setName(userRecordDto.name());
-        user.setPassword(passwordEncoder.encode(userRecordDto.password()));
+        user.setName(registerDto.name());
+        user.setEmail(registerDto.email());
+        user.setPassword(passwordEncoder.encode(registerDto.password()));
         return userRepository.save(user);
     }
 

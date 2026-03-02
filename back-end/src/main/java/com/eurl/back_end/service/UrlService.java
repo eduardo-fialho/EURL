@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
-import com.eurl.back_end.dto.UrlRecordDto;
+import com.eurl.back_end.dto.request.UrlCreateRequestDto;
 import com.eurl.back_end.model.UrlModel;
 import com.eurl.back_end.repository.UrlRepository;
 
@@ -21,11 +21,11 @@ public class UrlService {
     }
 
     @Transactional
-    public UrlModel createUrl(UrlRecordDto urlRecordDto) {
+    public UrlModel createUrl(UrlCreateRequestDto urlDto) {
         UrlModel url = new UrlModel();
         url.setActive(true);
         url.setNumClicks(0l);
-        url.setOriginalUrl(urlRecordDto.originalUrl());
+        url.setOriginalUrl(urlDto.originalUrl());
         String shortUrl = generateShortUrl(shortUrlLength);
         url.setShortUrl(shortUrl);
         return urlRepository.save(url);
