@@ -47,7 +47,7 @@ public class UserModel implements UserDetails {
     @Column(nullable = false)
     private Boolean active;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Set<UrlModel> urls;
 
     public UUID getId() {

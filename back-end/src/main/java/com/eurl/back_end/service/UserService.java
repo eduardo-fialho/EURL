@@ -33,7 +33,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserModel getById(UUID id) {
+    public UserModel findById(UUID id) {
         return userRepository.findById(id).get();
     }
 }

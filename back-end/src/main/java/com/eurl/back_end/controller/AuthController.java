@@ -1,5 +1,6 @@
 package com.eurl.back_end.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +45,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponseDto> register(@RequestBody RegisterUserRequestDto registerUserRequestDto) {
         UserModel newUser = userService.createUser(registerUserRequestDto); 
-        return ResponseEntity.ok(new RegisterUserResponseDto(newUser.getName(), newUser.getEmail()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new RegisterUserResponseDto(newUser.getName(), newUser.getEmail()));
     }
     
 }
