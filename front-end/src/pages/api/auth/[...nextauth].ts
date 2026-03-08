@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { jwtDecode } from "jwt-decode";
 
 export default NextAuth({
     providers: [
@@ -30,12 +31,18 @@ export default NextAuth({
 
     callbacks: {
         async jwt({ token, user }) {
-            if(user) token.accessToken = (user as any).token;
+            if(user) {
+                const accessToken = (user as any).token;
+                token.accessToken = accessToken;
+                const decoded = jwtDecode(accessToken);
+                token.userId = (decoded as any).userId;
+            } 
             return token;
         },
 
         async session({ session, token }) {
             (session as any).accessToken = token.accessToken;
+            (session as any).user.id = token.userId;
             return session;
         },
     },

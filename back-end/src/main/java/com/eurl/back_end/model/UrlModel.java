@@ -19,11 +19,14 @@ public class UrlModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String originalUrl;
 
     @Column(nullable = false, unique = true)
     private String shortUrl;
+
+    @Column(nullable = false, unique = true)
+    private String shortUrlCode;
 
     @Column(nullable = false)
     private Long numClicks;
@@ -81,6 +84,14 @@ public class UrlModel {
 
     public void setUser(UserModel user) {
         this.user = user;
+    }
+
+    public String getShortUrlCode() {
+        return shortUrlCode;
+    }
+
+    public void setShortUrlCode(String shortUrlCode) {
+        this.shortUrlCode = shortUrlCode;
     }
 
 }

@@ -6,17 +6,9 @@ export default function SideMenu() {
                 <h1 className="text-2xl">EURL</h1>
             </div>
             <a href=""></a>
-            <div className="mt-auto flex flex-col">
-                <div className="flex items-center mb-3">
-                    <div className="w-9 h-9 rounded-full bg-gray-400 flex items-center justify-center text-lg mr-3">
-                        U
-                    </div>
-                    <div className="text-md">
-                        User
-                    </div>
-                </div>
-                <div>
-                    <a href="/login" className="text-red-500 text-center">Sair</a>
+            <div className="mt-auto flex flex-col justify-center">
+                <div className="w-full flex justify-center">
+                    <a href="/login" className="w-[80%] p-2 bg-red-500 text-white rounded-xl text-sm font-medium hover:bg-red-600 transition-colors text-center">Sair</a>
                 </div>
             </div>
         </aside>

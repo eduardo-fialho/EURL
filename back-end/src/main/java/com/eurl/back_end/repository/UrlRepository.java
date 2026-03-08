@@ -11,9 +11,9 @@ import java.util.Set;
 
 
 public interface UrlRepository extends JpaRepository<UrlModel, UUID> {
-    public Boolean existsByShortUrl(String shortUrl);
+    public Boolean existsByShortUrlCode(String shortUrlCode);
 
-    public Optional<UrlModel> findOriginalUrlByShortUrl(String shortUrl);
+    public Optional<UrlModel> findByShortUrlCode(String shortUrlCode);
 
-    public Set<UrlModel> findAllByUserId(UUID userId);
+    public Set<UrlModel> findAllByUserIdAndActiveTrue(UUID userId);
 }
