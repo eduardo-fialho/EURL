@@ -1,7 +1,7 @@
 package com.eurl.back_end.service;
 
+import java.security.SecureRandom;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
@@ -71,7 +71,7 @@ public class UrlService {
     private String generateShortUrlCode(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String shortUrlCode;
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
         do {
             StringBuilder stringBuilder = new StringBuilder();
             for(int i = 0; i < length; i++) {

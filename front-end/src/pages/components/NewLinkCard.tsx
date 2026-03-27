@@ -7,11 +7,11 @@ interface NewLinkCardProps {
 
 export default function NewLinkCard({ value, onChange, onSave, onCancel }: NewLinkCardProps) {
     return (
-        <div className="flex w-full items-center border-on-top bg-neutral-900/50">
+        <div className="flex items-center p-4 bg-(--background-contrast-color) border-t border-(--primary-color) animate-in fade-in slide-in-from-top-2">
             <div className="w-[80%] p-4">
                 <input 
                     type="text" 
-                    className="w-full p-2 rounded outline-none text-white"
+                    className="flex-1 p-2 rounded-lg mr-4"
                     placeholder="Cole sua URL aqui..."
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
@@ -22,13 +22,13 @@ export default function NewLinkCard({ value, onChange, onSave, onCancel }: NewLi
             <div className="w-[20%] flex gap-2 justify-center p-4">
                 <button 
                     onClick={onSave}
-                    className="flex-1 p-2 !bg-blue-500 text-white rounded-xl text-sm font-medium hover:!bg-blue-600 transition-colors"
+                    className="px-4 py-2 rounded-lg text-sm bg-(--primary-color)"
                 >
                     Salvar
                 </button>
                 <button 
                     onClick={onCancel}
-                    className="flex-1 p-2 !bg-red-500 text-white rounded-xl text-sm font-medium hover:!bg-red-600 transition-colors"
+                    className="px-4 py-2 rounded-lg text-sm bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white"
                 >
                     Cancelar
                 </button>

@@ -4,8 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
-export default function login() {
-
+export default function Login() {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [error, setError] = useState<string>("");
@@ -13,34 +12,65 @@ export default function login() {
 
     async function handleLogin() {
         setError("");
-
         const result = await signIn("credentials", {
-            email: email,
-            password: password,
+            email,
+            password,
             redirect: false,
         }); 
 
-        if(result?.error) setError("E-mail ou senha incorretos.");
+        if (result?.error) setError("E-mail ou senha incorretos.");
         else router.push("/dashboard");
     }
 
     return (
-        <div className="default-theme">
+        <div className="default-theme flex flex-col">
             <Header />
-            <div className="flex flex-col justify-center items-center">
-                <div className="w-[25%] mt-[8%]">
-                    <h2 className="text-3xl text-center">Bem-vindo de volta</h2>
-                    <p className="text-neutral-400 text-center">Entre na sua conta para continuar</p>
-                    <div className="gap-4 flex flex-col my-6">
-                        <Input className="w-full" type="text" placeholder="Email" title="Email" value={email} onChange={e => { setEmail(e.target.value) }} />
-                        <Input className="w-full" type="password" placeholder="Senha" title="Senha" value={password} onChange={e => { setPassword(e.target.value) }} />
+            <main className="flex-1 flex flex-col justify-center items-center px-4 -mt-32">
+                <div className="w-full max-w-md bg-[var(--background-contrast-color)]/30 p-8 rounded-3xl border border-[var(--border-color)] shadow-2xl backdrop-blur-sm">
+                    <div className="text-center mb-8">
+                        <h2 className="text-3xl font-bold tracking-tight mb-2">Bem-vindo de volta</h2>
+                        <p className="text-neutral-500">Entre na sua conta para continuar gerenciando seus links</p>
                     </div>
-                    {error && <p className="text-red-500 text-sm text-center mb-4">{error}</p>}
-                    <button onClick={handleLogin} className="w-full rounded-xl p-3">Entrar</button>
-                    <p className="text-center mt-6">Não tem uma conta? <a href="/register" className="text-blue-500">Cadastre-se</a></p>
-                </div>
-            </div>
-        </div>
 
-    )
+                    <div className="gap-5 flex flex-col my-6">
+                        <Input 
+                            type="text" 
+                            placeholder="exemplo@email.com" 
+                            title="Email" 
+                            icon="mail"
+                            value={email} 
+                            onChange={e => setEmail(e.target.value)} 
+                        />
+                        <Input 
+                            type="password" 
+                            placeholder="Sua senha secreta" 
+                            title="Senha" 
+                            icon="lock"
+                            value={password} 
+                            onChange={e => setPassword(e.target.value)} 
+                        />
+                    </div>
+
+                    {error && (
+                        <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-500 p-3 rounded-xl mb-6 text-sm">
+                            <span className="material-symbols-rounded !text-[18px]">error</span>
+                            {error}
+                        </div>
+                    )}
+
+                    <button 
+                        onClick={handleLogin} 
+                        className="w-full bg-[var(--primary-color)] hover:bg-[var(--primary-color-hover)] text-white font-bold py-4 rounded-xl shadow-[0_4px_20px_rgba(23,182,255,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                        Entrar na conta
+                    </button>
+
+                    <p className="text-center mt-8 text-neutral-500 text-sm">
+                        Não tem uma conta? 
+                        <a href="/register" className="text-[var(--primary-color)] ml-1 font-semibold hover:underline">Cadastre-se</a>
+                    </p>
+                </div>
+            </main>
+        </div>
+    );
 }

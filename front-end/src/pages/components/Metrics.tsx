@@ -5,17 +5,20 @@ interface MetricsInterface {
     numClicks: number;
 }
 
-export default function Metrics(values: MetricsInterface) {
+export default function Metrics({ numLinks, numClicks }: MetricsInterface) {
+
+    const mediaCliques = numLinks > 0 ? (numClicks / numLinks).toFixed(1) : "0";
+
     return (
-        <div className="h-[25%] mx-5 w-auto">
-            <div className="mt-3">   
-                <h3 className="text-2xl font-semibold">Métricas</h3>
-                <p className="text-neutral-500">Gerencie seus resultados</p>
+        <div className="h-auto mb-8 mx-5">
+            <div className="mt-3 mb-5">   
+                <h3 className="text-2xl font-bold tracking-tight">Estatísticas</h3>
+                <p className="text-neutral-500 text-sm">Acompanhe o desempenho dos seus links</p>
             </div>
-            <div className="flex justify-between h-[75%] items-center ">
-                <MetricCard title="Total de Links" value={values.numLinks} />
-                <MetricCard title="Total de Cliques" value={values.numClicks} />
-                <MetricCard title="Média de Cliques" value={values.numLinks > 0 ? (values.numClicks / values.numLinks) : 0} />
+            <div className="flex gap-4 items-stretch">
+                <MetricCard title="Total de Links" value={numLinks} icon="link" />
+                <MetricCard title="Total de Cliques" value={numClicks} icon="ads_click" />
+                <MetricCard title="Média de Cliques" value={mediaCliques} icon="leaderboard" />
             </div>
         </div>
     );
